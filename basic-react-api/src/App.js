@@ -3,11 +3,11 @@ import './App.css';
 
 function App() {
   const [fetchedData, setFetchedData] = useState();
-  const [apiURL, setApiUrl] = useState("http://api.tvmaze.com/search/shows?q=girls");
+  const [movie, setMovie] = useState("girls");
 
   useEffect(() => {
     const myFetch = async () => {
-      const response = await fetch(apiURL);
+      const response = await fetch(`http://api.tvmaze.com/search/shows?q=${movie}`);
 
       const responseParsed = await response.json();
 
@@ -17,12 +17,14 @@ function App() {
     }
   myFetch();
 
-  }, []);
+  }, [movie]);
 
   
   return (
     <div className="App">
-      Hello
+      <button
+        onClick={() => setMovie("batman")}
+      >Batman</button>
     </div>
   );
 }
