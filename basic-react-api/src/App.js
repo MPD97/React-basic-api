@@ -1,24 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
+  const [fetchedData, setFetchedData] = useState();
+  const [apiURL, setApiUrl] = useState("http://api.tvmaze.com/search/shows?q=girls");
+
+  useEffect(() => {
+    const myFetch = async () => {
+      const response = await fetch(apiURL);
+
+      const responseParsed = await response.json();
+
+      console.log(responseParsed);
+
+      setFetchedData(responseParsed);
+    }
+  myFetch();
+
+  }, []);
+
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      Hello
     </div>
   );
 }
